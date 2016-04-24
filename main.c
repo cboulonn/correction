@@ -18,12 +18,13 @@ int		main(int argc, char **argv)
 	while (i + 1 < argc)
 	{
 		fd = open(argv[i + 1], O_RDONLY);
-		while ((ret = get_next_line(fd, &line)))
+		while ((ret = get_next_line(fd, &line)) > 0)
 		{
-			ft_putstr("line : ");
 			ft_putendl(line);
 			free(line);
 		}
+		if (ret == -1)
+			ft_putendl("Bad opening ok");
 		i++;
 	}
 	return (0);
